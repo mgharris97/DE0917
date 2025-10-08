@@ -7,8 +7,6 @@ Write a C program that evaluates arithmetic expressions from text files using (m
 - Report either the numeric result or a precise error location.
 - Write the result to an output file with a specific naming convention.
 
----
-
 ## CLI & I/O
 ## Invocation
 
