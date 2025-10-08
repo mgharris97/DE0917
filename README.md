@@ -11,15 +11,18 @@ lab-1/
 ├── build/      # compiled output
 ├── Makefile    # build instructions
 └── README.md   # this file
+```
 
 ## How to Build
 ```bash
 make
 ./build/calc
+```
 
-How to Clean
+## How to Clean
 ```bash
 make clean
+```
 
 Author
 Matthew Harris 
