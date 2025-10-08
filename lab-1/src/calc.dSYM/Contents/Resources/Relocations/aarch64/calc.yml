@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/Matt/Documents/CS2/lab-1/src/calc'
+relocations:     []
+...
