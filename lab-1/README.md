@@ -1,15 +1,13 @@
 <div align="center">
 ## 🧮 Pythonic Arithmetic Parser in C
 </div?>
+
 ## Goal
 Write a C program that evaluates arithmetic expressions from text files using (mostly) Python’s operator rules and standard C (similar to Java) arithmetic semantics. The program must:
 
 - Read an input file (or a directory of files).
-
 - Parse and evaluate expressions.
-
 - Report either the numeric result or a precise error location.
-
 - Write the result to an output file with a specific naming convention.
 
 ---
