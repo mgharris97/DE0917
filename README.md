@@ -1,8 +1,6 @@
-# Lab 1 – Calculator Program
-
-This project is part of my CS2 coursework.  
-It implements basic arithmetic operations in C.
-
+ This repository contains all lab assignments fro DE0917 class
+ Each lab-x folder contains its README and all relevant files
+ 
 ## Folder Structure
 ```bash
 ├── lab-1
@@ -32,3 +30,4 @@ make clean
 
 Author
 Matthew Harris 
+Oct. 8, 2025
