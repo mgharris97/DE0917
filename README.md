@@ -5,12 +5,18 @@ It implements basic arithmetic operations in C.
 
 ## Folder Structure
 ```bash
-lab-1/
-├── src/        # source code
-├── include/    # header files
-├── build/      # compiled output
-├── Makefile    # build instructions
-└── README.md   # this file
+├── lab-1
+│   ├── calc
+│   ├── include
+│   ├── README.md
+│   └── src
+├── lab-2
+│   ├── build
+│   ├── include
+│   ├── Makefile
+│   ├── README.md
+│   └── src
+└── README.md
 ```
 
 ## How to Build
