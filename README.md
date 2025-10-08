@@ -17,7 +17,7 @@ lab-1/
 ```bash
 make
 ./build/calc
-```
+```git push -u origin main
 
 ## How to Clean
 ```bash
