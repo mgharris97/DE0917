@@ -39,3 +39,16 @@
 
 # debug information files
 *.dwo
+
+# Ignore compiled programs and object files
+**/build/
+**/*.o
+**/*.out
+**/*.exe
+**/calc
+
+# macOS metadata
+.DS_Store
+
+# Backup and temp files
+*~
