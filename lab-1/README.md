@@ -1,7 +1,4 @@
-<div align="center">
 ## 🧮 Pythonic Arithmetic Parser in C
-</div?>
-
 ## Goal
 Write a C program that evaluates arithmetic expressions from text files using (mostly) Python’s operator rules and standard C (similar to Java) arithmetic semantics. The program must:
 
