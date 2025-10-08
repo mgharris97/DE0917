@@ -18,14 +18,22 @@ Write a C program that evaluates arithmetic expressions from text files using (m
 calc [-d DIR | --dir DIR] [-o OUTDIR | --output-dir OUTDIR] input.txt
 ```
 
+<<<<<<< HEAD
 - if `-d/--dir` is provided, **process all** `*.txt` files ***files in the DIR` (ignore subfolders)
+=======
+- if `-d/--dir` is provided, **process all** ```*.txt``` files ***files in the DIR` (ignore subfolders)
+>>>>>>> 29c7236e2dce1d0b01212aa1fc33ea07fab4e05b
 - if `-o/--output-dir` is **omitted**, create a default output folder:
     `<input_base>_<username>_<studentid>`
     Example: `labs_valdis_12345/`
 - if `-o/--output-dir` **is provided** and doe snot exist, create it
 
 ## Output file name
+<<<<<<< HEAD
 for each input `task1.txt`, produce
+=======
+for each input ```task1.txt```, produce
+>>>>>>> 29c7236e2dce1d0b01212aa1fc33ea07fab4e05b
 ```task1_<name>_<lastname>_<studentid>.txt```
 The file contains **either** the result (single line) **or** `ERROR:<pos>`
 > **Character position** is **1-based,** counting every char in the file, including `\n` as one character
@@ -34,6 +42,7 @@ The file contains **either** the result (single line) **or** `ERROR:<pos>`
 - **ASCII** only.
 - Whitespace may appear anywhere.
 - At minimum (grade 4-6) inputs are **single line ≤ 100 chars** (later grades extend this)
+<<<<<<< HEAD
 - Expressions can be **integer** and, for higher grades, **float*8 (IEEE 754 double)
 
 ## Features by Grade (Rubric)
@@ -57,3 +66,5 @@ The file contains **either** the result (single line) **or** `ERROR:<pos>`
 
 # Grade 7/10 - Division 
 
+=======
+>>>>>>> 29c7236e2dce1d0b01212aa1fc33ea07fab4e05b
