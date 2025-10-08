@@ -48,7 +48,7 @@
 **/calc
 
 # macOS metadata
-.DS_Store
+**/.DS_Store
 
 # Backup and temp files
 *~
