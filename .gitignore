@@ -47,8 +47,17 @@
 **/*.exe
 **/calc
 
+# Ignore macOS debug symbol folders 
+# Fix for having a calc.dSYM folder added
+*.dSYM
+
 # macOS metadata
 .DS_Store
+
+# Ignore build outputs
+calc
+*.out
+
 
 # Backup and temp files
 *~
