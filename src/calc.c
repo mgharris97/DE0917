@@ -8,6 +8,32 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 
+
+int isDirEmpty(char *path){
+        DIR *folder;
+        folder = opendir(path); // //Logic for opening and reading a directory was found here: https://c-for-dummies.com/blog/?p=3246
+        if (folder == NULL) //First I want to check if the provided directory can even be opened. If not then an error will be returned.
+        {
+            fprintf(stderr, "Error: could not open directory '%s'\n", path);
+            return -1;
+        }
+        struct dirent *entry;
+        int files = 0; //error opening folder
+        while ((entry = readdir(folder)) != NULL){ 
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0){
+                continue;
+            }
+            files++;
+        } 
+        closedir(folder);
+        if (files < 1){
+            return 1; //folder is empty
+        } else {
+            return 0; //folder is not empty
+
+        }
+}
+
 int main(int argc, char *argv[]) 
 {
     //printf("There are %d arguments\n", argc);
@@ -82,10 +108,28 @@ int main(int argc, char *argv[])
         //sprintf(new_dir, "%s_%s_%s", input_base, username, studentid);
         snprintf(new_dir, sizeof(new_dir), "%s_%s_%s", input_base, username, studentid); //using snprintf instead to prevent buffer overflow
         mkdir(new_dir, 0777); //mkdir logic found here https://www.delftstack.com/howto/c/mkdir-in-c/
-        //Everyone has read and write permissions
+        //0777, Everyone has read and write permissions
     }
 
-    //Make a loop that cycles through the directory and opens each file     
+    if (!isDirEmpty(input_directory)){
+        DIR *folder = opendir(input_directory);
+        struct dirent *entry;
+
+        while ((entry = readdir(folder)) != NULL){
+            // When beginning going throught he folder, I want to ignore the "." and "..", the current and parent directories
+            if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0){
+                continue;
+
+                //Handle .txt here
+            }
+        }
+
+            closedir(folder);
+        } else {
+            printf("The directory is empty\n");
+        }
+    
+
    
         
 
