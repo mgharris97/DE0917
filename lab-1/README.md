@@ -138,7 +138,7 @@ unary   := ('+' | '-') unary | primary
 primary := NUMBER | '(' expr ')'
 ```
 
-<<<<<<< HEAD
+
 ## Examples
 ## Sample
 input (`task1.txt`)

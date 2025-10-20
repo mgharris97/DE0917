@@ -37,6 +37,8 @@ int isDirEmpty(char *path){
         }
 }
 
+    //--------------------------------------------------------------------------//
+
 int main(int argc, char *argv[]) 
 {
     //printf("There are %d arguments\n", argc);
@@ -64,6 +66,8 @@ int main(int argc, char *argv[])
                 return 1;
             }    
         }
+
+    //-o and --output-dir
     //--------------------------------------------------------------------------//
     //For specifying output in the terminal window, I want to look for instances of "-o" and "--output-dir"
     if (strcmp(argv[i], "-o") == 0 || strcmp(argv[i], "--output-dir") == 0)
@@ -88,6 +92,7 @@ int main(int argc, char *argv[])
     }
 }
 
+    //-d and --dir
     //--------------------------------------------------------------------------//
     char new_dir[256] = {0};
     if (output_directory == NULL) //Will create the default folder in the current working directory  
@@ -115,6 +120,9 @@ int main(int argc, char *argv[])
         mkdir(new_dir, 0777); //mkdir logic found here https://www.delftstack.com/howto/c/mkdir-in-c/
         //0777, Everyone has read and write permissions
     }
+
+        //--------------------------------------------------------------------------//
+        //^^ breakpoints for me to keep track of where I am
 
     //main logic for .txt parsing
     if (!isDirEmpty(input_directory)){
@@ -145,7 +153,8 @@ int main(int argc, char *argv[])
                 fclose(fp);
                 line[strcspn(line, "\n")] = '\0'; // searchng for the first occurance of \n and replaces it with null
                 
-
+                //experssion parsing
+                //This section will handle all tokenization and evaluation 
                 int pos = 0; //this is going to be the index pointer in line
                 double result = 0.0; //result of the computation 
                 double current_term = 0.0; //the current term to be calcualted. 
@@ -155,18 +164,20 @@ int main(int argc, char *argv[])
                 int len_line = strlen(line); //
                 int last_op = '+'; // track previous operator
 
+                //I want to loop over each char in the supplied txt. 
                 while (pos < len_line) {
                     char c = line[pos];
-                    if (isspace((unsigned char)c)) {
+                    if (isspace((unsigned char)c)) { //isspace found here https://en.cppreference.com/w/cpp/string/byte/isspace.html
                         pos++;
                         continue;
                     }
-                    if (expect_number) {
+                    if (expect_number) { //if a number is expected to be read
                         if (isdigit((unsigned char)c) || c == '.') {
                             double num = 0.0;
-                            int has_decimal = 0;
+                            int has_decimal = 0; //ensuring that only one decimal point is allowed 
                             double decimal_div = 10.0;
 
+                            //Characters in a txt need to be converted to a numeric values. "12.5" = 12.5
                             while (pos < len_line && (isdigit((unsigned char)line[pos]) || line[pos] == '.')) {
                                 if (line[pos] == '.') {
                                     if (has_decimal) { error_pos = pos; break; }
@@ -183,12 +194,20 @@ int main(int argc, char *argv[])
                             }
                             if (error_pos != -1) break;
 
-                            if (last_op == '+') {
+                            //applying the previous operator to the number just parsed number
+                            if (last_op == '+') { //start of a new positive term
                                 current_term = num;
-                            } else if (last_op == '-') {
+                            } else if (last_op == '-') { //start of a new negative term
                                 current_term = -num;
-                            } else if (last_op == '*') {
+                            } else if (last_op == '*') {//times with the previous term
                                 current_term *= num;
+                            } else if (last_op == '/') { 
+                                if (fabs(num) < 1e-12) { // detect division by zero
+                                    error_pos = pos - 1;  // mark position of '/' token or divisor
+                                    break;
+                                } else {
+                                    current_term /= num; // perform true division
+                                }
                             }
 
                             expect_number = 0;
@@ -197,29 +216,31 @@ int main(int argc, char *argv[])
                             break;
                         }
                     } else {
-                        if (c == '+' || c == '-' || c == '*') {
-                            if (c == '+' || c == '-') {
+                        // Handle +, -, *, and / operators (division by zero handled during numeric parsing)
+                        if (c == '+' || c == '-' || c == '*' || c == '/') { //include division
+                            if (c == '+' || c == '-') { //multipliation is omitted here since it applied to the current term not the whole
                                 result += current_term;
                             }
                             last_op = c;
                             expect_number = 1;
                             pos++;
-                        } else if (isspace((unsigned char)c)) {
+                        } else if (isspace((unsigned char)c)) { //typecasting here to avoid any negatives for isspsace since that can cause unexpected error / crashing
                             pos++;
-                            continue;
+                            continue; //if the char is a blank space, move on
                         } else {
                             error_pos = pos;
                             break;
                         }
                     }
                 }
-                if (error_pos == -1) {
+                if (error_pos == -1) { //If there was no error but the expression ends expecting a number then that woul dbe an error.
                     if (expect_number)
                         error_pos = len_line - 1;
                     else
                         result += current_term;
                 }
 
+                //--------------------------------------------------------------------------//
                 // creating an and output file
                 char base_name[256];
                 strncpy(base_name, entry->d_name, len - 4);
@@ -240,10 +261,11 @@ int main(int argc, char *argv[])
                 if (error_pos != -1) {
                     fprintf(out_fp, "ERROR:%d\n", error_pos + 1);
                 } else {
-                    if (fabs(result - (int)result) < 1e-9)
+                    if (fabs(result - (int)result) < 1e-9) //I used GPT here to return a value as an integer if it is close enough to avoid something like 14.9999999999 (15 digits of precision)
+                                                            //The prompt was "In c how do I do a precision-safe check to decide whether to print the number as an integer or a floating-point value."
                         fprintf(out_fp, "%d\n", (int)result);
                     else
-                        fprintf(out_fp, "%.15g\n", result);
+                        fprintf(out_fp, "%.15g\n", result); //print to output up to 15 significant digits
                 }
                 fclose(out_fp);
             }
@@ -254,3 +276,6 @@ int main(int argc, char *argv[])
         }
    return 0; 
 }
+
+
+//to implement: division 
