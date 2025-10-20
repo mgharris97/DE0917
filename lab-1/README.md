@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## 🧮 Pythonic Arithmetic Parser in C
 ## Goal
 Write a C program that evaluates arithmetic expressions from text files using (mostly) Python’s operator rules and standard C (similar to Java) arithmetic semantics. The program must:
@@ -13,27 +12,6 @@ Write a C program that evaluates arithmetic expressions from text files using (m
 
 ```
 calc [-d DIR | --dir DIR] [-o OUTDIR | --output-dir OUTDIR] input.txt
-=======
- ## DE0917 Labs
-
- This repository contains all lab assignments fro DE0917 class
- Each lab-x folder contains its README and all relevant files
- 
-## Folder Structure
-```bash
-├── lab-1
-│   ├── calc
-│   ├── include
-│   ├── README.md
-│   └── src
-├── lab-2
-│   ├── build
-│   ├── include
-│   ├── Makefile
-│   ├── README.md
-│   └── src
-└── README.md
->>>>>>> e476e2fea8f7b26dccd98af0adf52822b34ac876
 ```
 
 - if `-d/--dir` is provided, **process all** `*.txt` files ***files in the DIR` (ignore subfolders)
@@ -161,7 +139,6 @@ unary   := ('+' | '-') unary | primary
 primary := NUMBER | '(' expr ')'
 ```
 
-<<<<<<< HEAD
 ## Examples
 ## Simple
 input (`task1.txt`)
@@ -329,8 +306,3 @@ Parentheses with proper precedence                          +1                  
 - Store each token’s **start index**; on errors report the most relevant token’s start.
 - To print integers from double results, check `fabs(val - llround(val)) < 1e-12`.
 - For `**`, beware left-to-right bugs; test `2**3**2` rigorously.
-=======
-Author
-Matthew Harris 
-Oct. 8, 2025
->>>>>>> e476e2fea8f7b26dccd98af0adf52822b34ac876
