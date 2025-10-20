@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
                     continue;
                 }
                 fclose(fp);
-                line[strcspn(line, "\n")] = '\0'; // searchng for the first occurance of \n and replaces it with null
+                line[strcspn(line, "\n")] = '\0'; // searchng for the first occurance of \n and replaces it with null. \n can cause problems when parsing later
                 
                 //experssion parsing
                 //This section will handle all tokenization and evaluation 
@@ -194,20 +194,20 @@ int main(int argc, char *argv[])
                             }
                             if (error_pos != -1) break;
 
-                            //applying the previous operator to the number just parsed number
+                            //applying the previous operator to the just parsed number
                             if (last_op == '+') { //start of a new positive term
                                 current_term = num;
                             } else if (last_op == '-') { //start of a new negative term
                                 current_term = -num;
                             } else if (last_op == '*') {//times with the previous term
                                 current_term *= num;
-                            } else if (last_op == '/') { 
-                                if (fabs(num) < 1e-12) { // detect division by zero
-                                    error_pos = pos - 1;  // mark position of '/' token or divisor
+                            } else if (last_op == '/') { //Since the previous operator was "/"  division follows here
+                                if (fabs(num) < 1e-12) { 
+                                    error_pos = pos - 1;  
                                     break;
                                 } else {
-                                    current_term /= num; // perform true division
-                                }
+                                    current_term /= num; //divison  
+                                }   
                             }
 
                             expect_number = 0;
@@ -216,8 +216,8 @@ int main(int argc, char *argv[])
                             break;
                         }
                     } else {
-                        // Handle +, -, *, and / operators (division by zero handled during numeric parsing)
-                        if (c == '+' || c == '-' || c == '*' || c == '/') { //include division
+                        
+                        if (c == '+' || c == '-' || c == '*' || c == '/') { 
                             if (c == '+' || c == '-') { //multipliation is omitted here since it applied to the current term not the whole
                                 result += current_term;
                             }
