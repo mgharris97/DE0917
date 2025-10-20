@@ -19,7 +19,7 @@
 └── README.md
 ```
 
-## 👷‍♂️ How to compile and build lab-1 👷‍♂️
+## 👷‍♂️ How to build and run lab-1 👷‍♂️
 Requirements
 	- C Compiler: GCC (supports C17)
 ```bash
