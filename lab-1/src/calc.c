@@ -90,9 +90,10 @@ int main(int argc, char *argv[])
     if (output_directory == NULL) //Will create the default folder in the current working directory  
     {
         char *username = getenv("USER"); //I could ask for the user name, this simply gets it from the system. 
-        char studentid[20];
-        printf("Enter your student ID: ");
-        scanf("%19s", studentid);
+        //char studentid[20];
+        //printf("Enter your student ID: ");
+        //scanf("%19s", studentid);
+        const char *STUDENT_ID = "241ADB166";
         if (input_directory == NULL)
         {
             fprintf(stderr, "Error: No input directory provided (use -d or --dir).\n");
@@ -107,7 +108,7 @@ int main(int argc, char *argv[])
             strcpy(input_base, input_directory); //-------// review
         }
         //sprintf(new_dir, "%s_%s_%s", input_base, username, studentid);
-        snprintf(new_dir, sizeof(new_dir), "%s_%s_%s", input_base, username, studentid); //using snprintf instead to prevent buffer overflow
+        snprintf(new_dir, sizeof(new_dir), "%s_%s_%s", input_base, username, STUDENT_ID); //using snprintf instead to prevent buffer overflow
         mkdir(new_dir, 0777); //mkdir logic found here https://www.delftstack.com/howto/c/mkdir-in-c/
         //0777, Everyone has read and write permissions
     }
@@ -162,7 +163,6 @@ int main(int argc, char *argv[])
                         if (isdigit((unsigned char)c)) {
                             // parse integer
                             int num = 0;
-                            int start_pos = pos;
                             while (pos < len_line && isdigit((unsigned char)line[pos])) {
                                 num = num * 10 + (line[pos] - '0');
                                 pos++;
@@ -202,9 +202,9 @@ int main(int argc, char *argv[])
 
                 char output_path[512];
                 if (output_directory != NULL) {
-                    snprintf(output_path, sizeof(output_path), "%s/%s_Harris_Matt_241ADB166.txt", output_directory, base_name);
+                    snprintf(output_path, sizeof(output_path), "%s/%s_Harris_Matthew_241ADB166.txt", output_directory, base_name);
                 } else {
-                    snprintf(output_path, sizeof(output_path), "%s/%s_Harris_Matt_241ADB166.txt", new_dir, base_name);
+                    snprintf(output_path, sizeof(output_path), "%s/%s_Harris_Matthew_241ADB166.txt", new_dir, base_name);
                 }
                 FILE *out_fp = fopen(output_path, "w");
                 if (out_fp == NULL) {
@@ -218,30 +218,11 @@ int main(int argc, char *argv[])
                     fprintf(out_fp, "%d\n", result);
                 }
                 fclose(out_fp);
-
             }
-
-            // 1️⃣ Check if this entry is a .txt file
-            // 2️⃣ Build the full file path (e.g., "input/task1.txt")
-            // 3️⃣ Open it with fopen()
-            // 4️⃣ Read the single line
-            // 5️⃣ Evaluate the expression (e.g., 3 + 5 - 2)
-            // 6️⃣ Create the output filename (task1_<name>_<lastname>_<studentid>.txt)
-            // 7️⃣ Write the result or ERROR:<pos> to that file
-
-
         }
-
             closedir(folder);
         } else {
             printf("The directory is empty\n");
         }
-    
-
-   
-        
-
-
-
    return 0; 
 }
