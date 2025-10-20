@@ -19,15 +19,23 @@
 └── README.md
 ```
 
-## How to Build
+## How to compile and build lab-1
+Requirements
+	- C Compiler: GCC (supports C17)
 ```bash
-make
-./build/calc
+gcc -Wall -Wextra -std=c17 -o calc calc.c
 ```
+- (-Wall -Wextra) shows useful warnings
+- (-std=c17) enforeces C17 standard
+- (-o calc) create an exe with the name calc
 
-## How to Clean
+## How to Run
 ```bash
-make clean
+calc [-d DIR | --dir DIR] [-o OUTDIR | --output-dir OUTDIR] input.txt
+```
+For example:
+```
+./calc -d input_files -o results
 ```
 
 Author
