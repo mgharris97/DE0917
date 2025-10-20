@@ -36,8 +36,11 @@ calc [-d DIR | --dir DIR] [-o OUTDIR | --output-dir OUTDIR] input.txt
 For example:
 ```
 ./calc -d input_files -o results
+./calc -d /Users/Matt/Desktop/input_files -o /Users/Matt/Desktop/output_files
 ```
 
 Author
+
 Matthew Harris 
+
 Oct. 8, 2025
