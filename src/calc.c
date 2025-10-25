@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
             closedir(folder);
         } else {
             printf("The directory is empty\n");
-            printf("------------------------")
+            printf("------------------------");
         }
    return 0; 
 }
