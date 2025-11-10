@@ -1,6 +1,7 @@
 // Matthew Harris 241ADB166
 // https://github.com/mgharris97/DE0917 <- GitHub repo containing all labs
 // Compile with: gcc -Wall -Wextra -std=c17 -o calc calc.c
+// Due: October 21, 2025
 
 #include <stdio.h>
 #include <string.h>
