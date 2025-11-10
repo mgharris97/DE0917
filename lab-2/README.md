@@ -1,14 +1,19 @@
 ## Python Final Assignment: Flight Schedule Parser and Query Tool
 
-Submit: .zip file with all source code .py files with correct stucture and anything else needed, OR/AND submit URL of your github repository.
+**Submit:** 
+A '.zip' file with all source code .py files with correct stucture and anything else needed, OR/AND submit URL of your github repository.
+
 ---
 ## Overview 
 Write a Python program that can:
-    1. Parse one or more flight schedule `.csv` files
-    2. Validate and seperate **valid** and **invalid** records
-    3. Export results as `db.json` (valid flights) and `errors.txt` (invalid lines)
-    4. Optionally **load and existing JSON database instead of reparsing**
-    5. Execute from JSON file and save results
+
+1. Parse one or more flight schedule `.csv` files  
+2. Validate and separate **valid** and **invalid** records  
+3. Export results as:
+   - `db.json` → valid flights  
+   - `errors.txt` → invalid lines  
+4. Optionally **load an existing JSON database** instead of reparsing  
+5. Execute queries from a JSON file and save results
 ---
 ## Command-Line Interface
 
@@ -20,3 +25,4 @@ Write a Python program that can:
 | `-j path/to/db.json` | Load existing JSON database instead of parsing CSVs. |
 | `-q path/to/query.json` | 	Execute queries defined in a JSON file on the loaded database. |
 | `-h` | 	Show help message. |
+
