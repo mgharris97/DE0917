@@ -7,7 +7,7 @@
 import argparse
 import csv
 import os
-from parser_methods import csv_parse
+from csv_parser import csv_parse
 def main():
     ##Adding arguments to the Argument Parser
     ##Specifying metavar display name for arguments to be empty to avoid --INPUT, etc.

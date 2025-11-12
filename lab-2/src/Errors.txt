@@ -7,3 +7,4 @@ Line 16: INVALID_DATETIME → Invalid departure datetime
 Line 17:  → Invalid destiantion (not 3 uppercase letters)
 Line 19: FRA → flight ID not 2-8 alphanumeric character
 Line 20: 2025-13-40 10:00 → Invalid departure datetime
+

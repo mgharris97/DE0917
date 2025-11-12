@@ -62,8 +62,5 @@ def csv_parse(file_path):
             for i in errors_list:
                 error_file.write(i + "\n")
 
-def parse_directory(dir_path):
-    pass
 
-def load_jason(json_path):
-    pass
+
