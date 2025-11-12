@@ -8,6 +8,7 @@ import argparse
 import csv
 import os
 from csv_parser import csv_parse
+from dir_parser import dir_parse
 def main():
     ##Adding arguments to the Argument Parser
     ##Specifying metavar display name for arguments to be empty to avoid --INPUT, etc.
@@ -24,22 +25,22 @@ def main():
     
     if args.input:
         single_file_path = args.input
+        csv_parse(single_file_path) #implement parse_directory
     elif args.directory:
         dir_path = args.directory
-        parse_directory(dir_path) #implement parse_directory
-    elif args.json:
-        json_path = args.json
-        load_jason(json_path) #implement load_json
-    
-    if single_file_path: 
-        csv_parse(single_file_path)
+        dir_parse(dir_path)
+    #elif args.json:
+        #json_path = args.json
     else:
         print ("No input file specified")
+
+    
 
 
 
 
         
+
 
 
 

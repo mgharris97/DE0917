@@ -14,12 +14,13 @@ def csv_parse(file_path):
 
             if not i:
                 continue 
-            if len(i) != 6: 
-                errors_list.append(f"Line {line_num}: → too many or too few data fields")
-                continue
             if i[0].startswith("#"):
-                errors_list.append(f"Line {line_num}: {flight_id} → comment line, ignored for parsing")
+                errors_list.append(f"Line {line_num}: {i[0]} → comment line, ignored for parsing")
                 continue
+            if len(i) != 6: 
+                errors_list.append(f"Line {line_num}: {i} → invalid format")
+                continue
+            
             flight_id = i[0]
             origin = i[1]
             destination = i[2]
@@ -27,7 +28,7 @@ def csv_parse(file_path):
             arrival = i[4]
             price = i[5] 
             if not (2 <= len(i[0]) <= 8) and i[0].isalpha:
-                errors_list.append(f"Line {line_num}: {origin} → flight ID not 2-8 alphanumeric character")
+                errors_list.append(f"Line {line_num}: {flight_id} → flight ID not 2-8 alphanumeric character")
                 continue
             if not(destination.isupper() and len(destination) == 3 and destination.isalpha()):
                 errors_list.append(f"Line {line_num}: {destination} → Invalid destiantion (not 3 uppercase letters)")
@@ -48,7 +49,7 @@ def csv_parse(file_path):
                 is_arrival_date = False
             try:
                 if not (arrival_time > departure_time):
-                    errors_list.append(f"Line {line_num}: {arrival} → Arrival time occurs before departure")
+                    errors_list.append(f"Line {line_num}: {arrival} → Arrival time occurs before departure → {departure}")
                     continue
             except ValueError:
                 errors_list.append(f"Line {line_num}: {arrival} → Invalid arrival time")
