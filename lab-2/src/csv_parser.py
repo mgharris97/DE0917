@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime
 import os
+import json
 
 
 #CSV parser
@@ -28,7 +29,9 @@ def csv_parse(file_path):
             departure = i[3]
             arrival = i[4]
             price = i[5] 
-            if not (2 <= len(i[0]) <= 8) and i[0].isalpha:
+
+            #check each cell of a row one by one. If a cell is bad, print where it is bad and why
+            if not (2 <= len(i[0]) <= 8 and i[0].isalnum):
                 errors_list.append(f"Line {line_num}: {flight_id} → flight ID not 2-8 alphanumeric character")
                 continue
             if not(destination.isupper() and len(destination) == 3 and destination.isalpha()):
@@ -42,7 +45,6 @@ def csv_parse(file_path):
             if not(is_departure_date):
                 errors_list.append(f"Line {line_num}: {departure} → Invalid departure datetime")
                 continue
-
             try:
                 arrival_time = datetime.strptime(arrival, '%Y-%m-%d %H:%M')
                 is_arrival_date = True
@@ -59,12 +61,26 @@ def csv_parse(file_path):
             if not(isinstance(float(price), float)):
                 errors_list.append(f"Line {line_num}: {price} → Price must be a positive float number")
                 continue
+            #if all cells in a row (i) are good, then apped the row to the valid_flights list which is a list of dictionaries
+            valid_flights.append({"flight_id": flight_id,
+                                  "origin": origin,
+                                  "destination": destination,
+                                  "departure": departure,
+                                  "arrival": arrival,
+                                  "price": price
+                                })
+
         
         with open("Errors.txt", mode='a') as error_file:
-            error_file.write(f"--- Start of file [{file_path}] ---\n")
+            error_file.write(f"--- Start of file [{os.path.basename(file_path)}] ---\n")
             for i in errors_list:
                 error_file.write(i + "\n")
-            error_file.write(f"--- End of file [{file_path}] ---\n\n")
+            error_file.write(f"--- End of file [{os.path.basename(file_path)}] ---\n\n")
+
+        with open("db.json", mode='a') as json_file:
+            #json.dump(jobs_dictionary, f, indent=2)
+            json.dump(valid_flights, json_file, indent=2)
+       
 
 
 

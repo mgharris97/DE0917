@@ -5,14 +5,14 @@ import os
 
 def dir_parse(dir_path):
     files = glob.glob(dir_path + "/*.csv")
-    with open("Errors.txt", 'w') as f:
+    with open("Errors.txt", 'a') as f:
         if not files:
-            f.write(f"No CSV files in {dir_path}")
+            f.write(f"No CSV files were found in: {dir_path}\n\n")
             print (f"No CSV files in {dir_path}")
             return
+        #Take one file at a time and if it ends with .csv -> send to csv_parse
         for i in files:
             if i.endswith(".csv"):
-                #f.write(f"---Start of file {os.path.basename(i)} ---\n")
                 print(f"Parsing: {i}")
                 csv_parse(i)
                #print(j + '\n')   
