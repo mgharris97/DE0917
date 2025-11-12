@@ -49,72 +49,35 @@ def csv_parse(file_path):
                 errors_list.append(f"Line {line_num}: {destination} → Invalid destiantion (not 3 uppercase letters)")
                 continue
             try:
-                d = datetime.strptime(departure, '%Y-%m-%d %H:%M')
+                departure_time = datetime.strptime(departure, '%Y-%m-%d %H:%M')
                 is_departure_date = True
             except ValueError:
                 is_departure_date = False
             if not(is_departure_date):
-                errors_list.append(f"Line {line_num}: {departure} → Invalid datetime")
+                errors_list.append(f"Line {line_num}: {departure} → Invalid departure datetime")
                 continue
 
             try:
-                d = datetime.strptime(arrival, '%Y-%m-%d %H:%M')
+                arrival_time = datetime.strptime(arrival, '%Y-%m-%d %H:%M')
                 is_arrival_date = True
             except ValueError:
                 is_arrival_date = False
-            if not(is_arrival_date):
-                errors_list.append
-
-
-           
-
-
-            
-            
-
-
-           
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
-            
-
-                flight_dict = {
-                    "flight_id": flight_id,
-                    "origin": origin,
-                    "destination": destination,
-                    "departure": departure,
-                    "arrival": arrival,
-                    "price": price
-                }
-                data_list.append(flight_dict);
-    
-                
-
-            #if current row is empty or if the first cell in the current row begins with #
-            if not i or i[0].startswith("#"):
+            try:
+                dep_dt = datetime.strptime(departure_time, '%Y-%m-%d %H:%M')
+                arr_dt = datetime.strptime(arrival_time, '%Y-%m-%d %H:%M')
+                if not (arr_dt > dep_dt):
+                    errors_list.append(f"Liine {line_num}: {arrival} → Arrival time occurs before departure")
+                    continue
+            except ValueError:
+                errors_list.append(f"Line {line_num}: {arrival} → Invalid arrival time")
                 continue
-            print(i)
-
+            if not(isinstance(price, float)):
+                errors_list.append(f"Line {line_num}: {price} → Price must be a positive float number")
+                continue
         
+        with open("Errors.txt", mode='w+') as error_file:
+            for i in errors_list:
+                error_file.write()
 
 def parse_directory(dir_path):
     pass
