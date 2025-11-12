@@ -1,5 +1,6 @@
 import csv
 from datetime import datetime
+import os
 
 
 #CSV parser
@@ -59,9 +60,11 @@ def csv_parse(file_path):
                 errors_list.append(f"Line {line_num}: {price} → Price must be a positive float number")
                 continue
         
-        with open("Errors.txt", mode='w+') as error_file:
+        with open("Errors.txt", mode='a') as error_file:
+            error_file.write(f"--- Start of file [{file_path}] ---\n")
             for i in errors_list:
                 error_file.write(i + "\n")
+            error_file.write(f"--- End of file [{file_path}] ---\n\n")
 
 
 
