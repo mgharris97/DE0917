@@ -1,0 +1,9 @@
+Line 1: origin → flight ID not 2-8 alphanumeric character
+Line 2: → too many or too few data fields
+Line 11: → too many or too few data fields
+Line 12: → too many or too few data fields
+Line 14: 2025-11-15 12:00 → Arrival time occurs before departure
+Line 16: INVALID_DATETIME → Invalid departure datetime
+Line 17:  → Invalid destiantion (not 3 uppercase letters)
+Line 19: FRA → flight ID not 2-8 alphanumeric character
+Line 20: 2025-13-40 10:00 → Invalid departure datetime
