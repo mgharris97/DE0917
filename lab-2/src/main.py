@@ -9,6 +9,8 @@ import csv
 import os
 from csv_parser import csv_parse
 from dir_parser import dir_parse
+import json
+
 def main():
     ##Adding arguments to the Argument Parser
     ##Specifying metavar display name for arguments to be empty to avoid --INPUT, etc.
@@ -29,21 +31,13 @@ def main():
     elif args.directory:
         dir_path = args.directory
         dir_parse(dir_path)
-    #elif args.json:
-        #json_path = args.json
+    elif args.output:
+        json_out_path = args.output()
+        valid, error = csv_parse(args.input)
+        with open(os.path.basename(json_out_path), mode = 'w') as json_file:
+            json.dump(valid, json_file, indent=2)
     else:
         print ("No input file specified")
-
-    
-
-
-
-
-        
-
-
-
-
 
 
 

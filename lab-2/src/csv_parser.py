@@ -4,10 +4,10 @@ import os
 import json
 
 
-#CSV parser
-
+#CSV parse method
 errors_list = []
 valid_flights = []
+
 def csv_parse(file_path):
     print(f"Opening file: {file_path}")
     with open(file_path, newline='', mode = 'r') as f:
@@ -69,18 +69,21 @@ def csv_parse(file_path):
                                   "arrival": arrival,
                                   "price": price
                                 })
+            
+        return errors_list, valid_flights
 
-        
+    """ 
         with open("Errors.txt", mode='a') as error_file:
             error_file.write(f"--- Start of file [{os.path.basename(file_path)}] ---\n")
             for i in errors_list:
                 error_file.write(i + "\n")
             error_file.write(f"--- End of file [{os.path.basename(file_path)}] ---\n\n")
 
-        with open("db.json", mode='a') as json_file:
+        if
+        with open("db.json", mode='w') as json_file:
             #json.dump(jobs_dictionary, f, indent=2)
             json.dump(valid_flights, json_file, indent=2)
-       
+    """
 
 
 
