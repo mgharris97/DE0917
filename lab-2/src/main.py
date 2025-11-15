@@ -29,11 +29,10 @@ def main():
         single_file_path = args.input
         valid, error = csv_parse(single_file_path) #implement parse_directory
         with open("Errors.txt", 'a') as f:
-            f.write(f"Start of file [{os.path.basename(single_file_path)}]: ")
+            f.write(f"===Start of file [{os.path.basename(single_file_path)}]===\n")
             for i in error:
                 f.write(i + "\n")
-            f.write(f"End of file [{os.path.basename(single_file_path)}]: ")
-
+            f.write(f"===End of file [{os.path.basename(single_file_path)}]===\n\n")
     elif args.directory:
         dir_path = args.directory
         dir_parse(dir_path)
