@@ -27,17 +27,22 @@ def main():
     
     if args.input:
         single_file_path = args.input
-        csv_parse(single_file_path) #implement parse_directory
+        valid, error = csv_parse(single_file_path) #implement parse_directory
+        with open("Errors.txt", 'a') as f:
+            f.write(f"Start of file [{os.path.basename(single_file_path)}]: ")
+            for i in error:
+                f.write(i + "\n")
+            f.write(f"End of file [{os.path.basename(single_file_path)}]: ")
+
     elif args.directory:
         dir_path = args.directory
         dir_parse(dir_path)
+    else:
+        print("No input file or directory specified")
     if args.output:
         json_out_path = args.output
-        valid, error = csv_parse(args.input)
         with open(json_out_path, mode = 'w') as json_file:
             json.dump(valid, json_file, indent=2)
-    else:
-        print ("No input file specified")
 
 
 
