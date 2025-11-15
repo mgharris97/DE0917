@@ -70,7 +70,7 @@ def csv_parse(file_path):
                                   "price": price
                                 })
             
-        return errors_list, valid_flights
+        return valid_flights, errors_list
 
     """ 
         with open("Errors.txt", mode='a') as error_file:

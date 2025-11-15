@@ -31,10 +31,10 @@ def main():
     elif args.directory:
         dir_path = args.directory
         dir_parse(dir_path)
-    elif args.output:
-        json_out_path = args.output()
+    if args.output:
+        json_out_path = args.output
         valid, error = csv_parse(args.input)
-        with open("good.json", mode = 'w') as json_file:
+        with open(json_out_path, mode = 'w') as json_file:
             json.dump(valid, json_file, indent=2)
     else:
         print ("No input file specified")
