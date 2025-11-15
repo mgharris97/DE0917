@@ -34,7 +34,7 @@ def main():
     elif args.output:
         json_out_path = args.output()
         valid, error = csv_parse(args.input)
-        with open(os.path.basename(json_out_path), mode = 'w') as json_file:
+        with open("good.json", mode = 'w') as json_file:
             json.dump(valid, json_file, indent=2)
     else:
         print ("No input file specified")
