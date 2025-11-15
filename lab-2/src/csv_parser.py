@@ -58,8 +58,13 @@ def csv_parse(file_path):
                 errors_list.append(f"Line {line_num}: {arrival} → Invalid arrival time")
                 continue
 
-            if not(isinstance(float(price), float)):
-                errors_list.append(f"Line {line_num}: {price} → Price must be a positive float number")
+            try:
+                flight_price = float(price)
+                if flight_price < 0:
+                    errors_list.append(f"Line {line_num}: {price} → Price cannot be negative. Aint no one here paying you to fly w us")
+                    continue
+            except ValueError:
+                errors_list.append(f"Line {line_num}: {price} → Price must be a valid float")
                 continue
             #if all cells in a row (i) are good, then apped the row to the valid_flights list which is a list of dictionaries
             valid_flights.append({"flight_id": flight_id,

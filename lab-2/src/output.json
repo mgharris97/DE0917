@@ -70,13 +70,5 @@
     "departure": "2025-11-16 11:00",
     "arrival": "2025-11-16 13:00",
     "price": "80.00"
-  },
-  {
-    "flight_id": "AY503",
-    "origin": "HEL",
-    "destination": "RIX",
-    "departure": "2025-11-15 13:20",
-    "arrival": "2025-11-15 14:15",
-    "price": "-10.00"
   }
 ]
